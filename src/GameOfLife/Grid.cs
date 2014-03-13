@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace GameOfLife
 {
@@ -20,12 +19,28 @@ namespace GameOfLife
 
         public void AddCell(Cell cell)
         {
-            _cells[cell.Column - 1, cell.Row - 1] = cell;
+            _cells[cell.Column, cell.Row] = cell;
         }
 
         public Cell GetCell(int column, int row)
         {
-            return _cells[column - 1, row - 1];
+            return _cells[column, row];
+        }
+
+        public IEnumerable<Cell> Cells
+        {
+            get
+            {
+                for (var row = 0; row < Rows; row++)
+                {
+                    for (var column = 0; column < Columns; column++)
+                    {
+                        var cell = _cells[column, row];
+                        if (cell == null) continue;
+                        yield return cell;
+                    }
+                }
+            }
         }
     }
 }

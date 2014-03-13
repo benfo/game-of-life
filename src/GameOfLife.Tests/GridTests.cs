@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Linq;
+using NUnit.Framework;
 
 namespace GameOfLife.Tests
 {
@@ -28,9 +29,27 @@ namespace GameOfLife.Tests
 
             grid.AddCell(cell);
 
-            Cell addedCell = grid.GetCell(column, row);
+            var addedCell = grid.GetCell(column, row);
             Assert.That(addedCell.Column, Is.EqualTo(column));
             Assert.That(addedCell.Row, Is.EqualTo(row));
+        }
+
+        [Test]
+        public void Cells_ValidCellsAreAdded_ReturnsAddedCells()
+        {
+            var grid = new Grid(4, 4);
+            var cell1 = new Cell { Column = 0, Row = 1 };
+            var cell2 = new Cell { Column = 2, Row = 1 };
+            var cell3 = new Cell { Column = 3, Row = 3 };
+            var cell4 = new Cell { Column = 2, Row = 3 };
+
+            grid.AddCell(cell1);
+            grid.AddCell(cell2);
+            grid.AddCell(cell3);
+            grid.AddCell(cell4);
+
+            var cells = grid.Cells;
+            Assert.That(cells.ElementAt(0), Is.EqualTo(cell1));
         }
     }
 }
