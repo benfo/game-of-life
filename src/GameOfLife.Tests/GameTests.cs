@@ -23,5 +23,16 @@ namespace GameOfLife.Tests
 
             Assert.That(game.Generation, Is.EqualTo(1));
         }
+
+        [Test]
+        public void Tick_Underpopulation_DiesOff()
+        {
+            var game = new Game(10, 10);
+            game.Grid[5, 5].State = CellState.Alive;
+
+            game.Tick();
+
+            Assert.That(game.Grid[5, 5].State, Is.EqualTo(CellState.Dead));
+        }
     }
 }
