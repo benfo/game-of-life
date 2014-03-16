@@ -5,18 +5,25 @@ namespace GameOfLife
     public class Game
     {
         private Grid _grid;
+        private NeighbourLocator _neighbourLocator;
 
         public Game(int columns, int rows)
         {
             _grid = new Grid(columns, rows);
+            _neighbourLocator = new NeighbourLocator(_grid);
         }
+
         public void Tick()
         {
             Generation += 1;
 
             foreach (var cell in _grid)
             {
-                
+                cell.LivingNeighbourCount = _neighbourLocator
+                    .Find(cell)
+                    .Count(n => n.State == CellState.Alive);
+
+                cell.Tick();
             }
         }
 

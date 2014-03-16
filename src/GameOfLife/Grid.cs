@@ -6,7 +6,6 @@ namespace GameOfLife
     public class Grid : IEnumerable<Cell>
     {
         private readonly Cell[,] _cells;
-        private readonly NeighbourLocator _neighbourLocator;
 
         public Grid(int columns, int rows)
         {
@@ -14,7 +13,6 @@ namespace GameOfLife
             Rows = rows;
 
             _cells = new Cell[columns, rows];
-            _neighbourLocator = new NeighbourLocator(this);
 
             Initialize();
         }
@@ -22,11 +20,6 @@ namespace GameOfLife
         public int Columns { get; private set; }
 
         public int Rows { get; private set; }
-
-        internal NeighbourLocator NeighbourLocator
-        {
-            get { return _neighbourLocator; }
-        }
 
         public Cell this[int column, int row]
         {
@@ -55,7 +48,7 @@ namespace GameOfLife
             {
                 for (var column = 0; column < Columns; column++)
                 {
-                    _cells[column, row] = new Cell(this)
+                    _cells[column, row] = new Cell()
                     {
                         Column = column,
                         Row = row,
