@@ -14,6 +14,7 @@ namespace GameOfLife
 
         public void Tick()
         {
+            this.State = CellState.Dead;
         }
     }
 }
