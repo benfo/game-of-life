@@ -7,8 +7,8 @@
     <ProjectGuid>{0DACBDD9-0164-4B92-AC74-262FBC5DF2EA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GameOfLife</RootNamespace>
-    <AssemblyName>GameOfLife</AssemblyName>
+    <RootNamespace>GameOfLife.Core</RootNamespace>
+    <AssemblyName>GameOfLife.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

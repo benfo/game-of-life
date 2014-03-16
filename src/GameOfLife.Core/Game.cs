@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace GameOfLife
+namespace GameOfLife.Core
 {
     public class Game
     {

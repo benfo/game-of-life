@@ -56,9 +56,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GameOfLife\GameOfLife.csproj">
+    <ProjectReference Include="..\GameOfLife.Core\GameOfLife.Core.csproj">
       <Project>{0DACBDD9-0164-4B92-AC74-262FBC5DF2EA}</Project>
-      <Name>GameOfLife</Name>
+      <Name>GameOfLife.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

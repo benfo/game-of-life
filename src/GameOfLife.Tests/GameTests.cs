@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using GameOfLife.Core;
 using NUnit.Framework;
 
 namespace GameOfLife.Tests

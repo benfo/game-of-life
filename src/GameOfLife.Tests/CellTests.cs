@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using GameOfLife.Core;
+using NUnit.Framework;
 
 namespace GameOfLife.Tests
 {
@@ -13,7 +14,7 @@ namespace GameOfLife.Tests
                 State = CellState.Alive,
                 LivingNeighbourCount = 1
             };
-            
+
             cell.Tick();
 
             Assert.That(cell.State == CellState.Dead);

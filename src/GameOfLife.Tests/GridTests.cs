@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using GameOfLife.Core;
 using NUnit.Framework;
 
 namespace GameOfLife.Tests

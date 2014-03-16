@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace GameOfLife
+namespace GameOfLife.Core
 {
     public class Grid : IEnumerable<Cell>
     {
