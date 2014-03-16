@@ -1,35 +1,23 @@
-﻿using System;
-using System.Threading;
-
-namespace GameOfLife
+﻿namespace GameOfLife
 {
     public class Cell
     {
-        internal Cell()
-        {
-        }
-        
-        public CellState State { get; set; }
+        private readonly Grid _grid;
 
-        public int Row { get; set; }
+        internal Cell(Grid grid)
+        {
+            _grid = grid;
+        }
 
         public int Column { get; set; }
 
-        public override bool Equals(object obj)
-        {
-            var target = obj as Cell;
-            
-            if (target == null)
-                return false;
+        public int Row { get; set; }
 
-            return target.State == State &&
-                target.Row == Row &&
-                target.Column == Column;
-        }
+        public CellState State { get; set; }
 
-        public override int GetHashCode()
+        internal Grid Grid
         {
-            return State.GetHashCode() ^ Row.GetHashCode() ^ Column.GetHashCode();
+            get { return _grid; }
         }
     }
 }
