@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace GameOfLife
 {
-    public class Grid
+    public class Grid : IEnumerable<Cell>
     {
         private readonly Cell[,] _cells;
 
@@ -27,20 +28,22 @@ namespace GameOfLife
             return _cells[column, row];
         }
 
-        public IEnumerable<Cell> Cells
+        public IEnumerator<Cell> GetEnumerator()
         {
-            get
+            for (var row = 0; row < Rows; row++)
             {
-                for (var row = 0; row < Rows; row++)
+                for (var column = 0; column < Columns; column++)
                 {
-                    for (var column = 0; column < Columns; column++)
-                    {
-                        var cell = _cells[column, row];
-                        if (cell == null) continue;
-                        yield return cell;
-                    }
+                    var cell = _cells[column, row];
+                    if (cell == null) continue;
+                    yield return cell;
                 }
             }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

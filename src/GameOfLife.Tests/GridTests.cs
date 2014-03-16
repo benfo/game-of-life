@@ -35,7 +35,7 @@ namespace GameOfLife.Tests
         }
 
         [Test]
-        public void Cells_ValidCellsAreAdded_ReturnsAddedCells()
+        public void Enumerable_ValidCellsAreAdded_ReturnsAddedCells()
         {
             var grid = new Grid(4, 4);
             var cell1 = new Cell { Column = 0, Row = 1 };
@@ -47,9 +47,8 @@ namespace GameOfLife.Tests
             grid.AddCell(cell2);
             grid.AddCell(cell3);
             grid.AddCell(cell4);
-
-            var cells = grid.Cells;
-            Assert.That(cells.ElementAt(0), Is.EqualTo(cell1));
+            
+            Assert.That(grid.ElementAt(0), Is.EqualTo(cell1));
         }
     }
 }
