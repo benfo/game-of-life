@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Cell.cs" />
     <Compile Include="CellState.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="Grid.cs" />
     <Compile Include="NeighbourLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
