@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace GameOfLife.Core
 {
-    public class Life105PatternParser : IPatternParser
+    public class Life105PatternReader : IPatternReader
     {
-        public IEnumerable<CellPattern> Parse(string pattern)
+        public IEnumerable<CellPattern> Read(string pattern)
         {
             var rows = pattern.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
 

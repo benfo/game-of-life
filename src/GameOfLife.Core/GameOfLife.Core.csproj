@@ -44,9 +44,9 @@
     <Compile Include="CellState.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Grid.cs" />
-    <Compile Include="IPatternParser.cs" />
+    <Compile Include="IPatternReader.cs" />
     <Compile Include="NeighbourLocator.cs" />
-    <Compile Include="Life105PatternParser.cs" />
+    <Compile Include="Life105PatternReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
