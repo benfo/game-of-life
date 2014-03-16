@@ -38,10 +38,10 @@ namespace GameOfLife.Tests
         [Test]
         [TestCase(6, 6, Patterns.StillLifes.Barge)]
         [TestCase(6, 5, Patterns.StillLifes.Beehive)]
+        [TestCase(8, 7, Patterns.StillLifes.ClawWithTail)]
         public void Tick_StillLifePattern_NothingIsBornOrDies(int gameCols, int gameRows, string pattern)
         {
-            //Using pattern: http://www.conwaylife.com/wiki/Barge
-
+            //Using patterns from http://www.conwaylife.com/wiki/Category:Still_lifes
             var game = new Game(gameCols, gameRows);
 
             LoadPattern(game, pattern);

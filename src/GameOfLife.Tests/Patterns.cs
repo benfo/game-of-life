@@ -18,6 +18,15 @@
                 "daddad|" +
                 "ddaadd|" +
                 "dddddd";
+
+            public const string ClawWithTail =
+                "dddddddd|" +
+                "daaddddd|" +
+                "ddaddddd|" +
+                "ddadaadd|" +
+                "dddaddad|" +
+                "dddddaad|" +
+                "dddddddd";
         }
     }
 }
