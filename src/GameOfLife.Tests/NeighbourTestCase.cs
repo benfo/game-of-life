@@ -32,11 +32,11 @@ namespace GameOfLife.Tests
                     grid[colIndex, rowIndex].State = CellState.Alive;
                     switch (cellPattern)
                     {
-                        case "c":
+                        case "x":
                             neighbourTestCase.Cell = grid[colIndex, rowIndex];
                             break;
 
-                        case "p":
+                        case "a":
                             neighbourTestCase.NeighbouringCells.Add(grid[colIndex, rowIndex]);
                             break;
                     }

@@ -4,8 +4,8 @@ namespace GameOfLife
 {
     public class Game
     {
-        private Grid _grid;
-        private NeighbourLocator _neighbourLocator;
+        private readonly Grid _grid;
+        private readonly NeighbourLocator _neighbourLocator;
 
         public Game(int columns, int rows)
         {
