@@ -36,53 +36,40 @@ namespace GameOfLife.Tests
         }
 
         [Test]
-        public void Tick_StillLifePattern_NothingIsBornOrDies()
+        [TestCase(6, 6, Patterns.StillLifes.Barge)]
+        [TestCase(6, 5, Patterns.StillLifes.Beehive)]
+        public void Tick_StillLifePattern_NothingIsBornOrDies(int gameCols, int gameRows, string pattern)
         {
             //Using pattern: http://www.conwaylife.com/wiki/Barge
 
-            var game = new Game(6, 6);
+            var game = new Game(gameCols, gameRows);
 
-            LoadPattern(game, 1, 1, Patterns.StillLifes.Barge);
+            LoadPattern(game, pattern);
 
             game.Tick();
             game.Tick();
+            game.Tick();
+            game.Tick();
 
-            VerifyPattern(game, 1, 1, Patterns.StillLifes.Barge);
+            VerifyPattern(game, pattern);
         }
 
-        private static void VerifyPattern(Game game, int colOffset, int rowOffset, string pattern)
+        private static void VerifyPattern(Game game, string pattern)
         {
-            var rows = pattern.Split('|');
-
-            for (int rowIndex = 0; rowIndex < rows.Length; rowIndex++)
+            var cellPatterns = new PatternParser().Parse(pattern);
+            foreach (var cellPattern in cellPatterns)
             {
-                var row = rows[rowIndex];
-                for (int colIndex = 0; colIndex < row.Length; colIndex++)
-                {
-                    var statePattern = row[colIndex];
-                    var state = statePattern == 'a' ? CellState.Alive : CellState.Dead;
-
-                    Assert.That(game.Grid[colIndex + colOffset, rowIndex + rowOffset].State, Is.EqualTo(state));
-                }
+                Assert.That(game.Grid[cellPattern.Column, cellPattern.Row].State, Is.EqualTo(cellPattern.State));
             }
         }
 
-        private static string[] LoadPattern(Game game, int colOffset, int rowOffset, string pattern)
+        private static void LoadPattern(Game game, string pattern)
         {
-            var rows = pattern.Split('|');
-
-            for (int rowIndex = 0; rowIndex < rows.Length; rowIndex++)
+            var cellPatterns = new PatternParser().Parse(pattern);
+            foreach (var cellPattern in cellPatterns)
             {
-                var row = rows[rowIndex];
-                for (int colIndex = 0; colIndex < row.Length; colIndex++)
-                {
-                    var statePattern = row[colIndex];
-                    var state = statePattern == 'a' ? CellState.Alive : CellState.Dead;
-
-                    game.Grid[colIndex + colOffset, rowIndex + rowOffset].State = state;
-                }
+                game.Grid[cellPattern.Column, cellPattern.Row].State = cellPattern.State;
             }
-            return rows;
         }
     }
 }

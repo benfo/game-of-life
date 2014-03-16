@@ -4,11 +4,20 @@
     {
         public class StillLifes
         {
-            public static string Barge = 
-              "dadd|" +
-              "adad|" +
-              "dada|" +
-              "ddad";
+            public const string Barge =
+                "dddddd|" +
+                "ddaddd|" +
+                "dadadd|" +
+                "ddadad|" +
+                "dddadd|" +
+                "dddddd";
+
+            public const string Beehive =
+                "dddddd|" +
+                "ddaadd|" +
+                "daddad|" +
+                "ddaadd|" +
+                "dddddd";
         }
     }
 }
