@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Text;
+using NUnit.Framework;
 
 namespace GameOfLife.Tests
 {
@@ -52,6 +54,20 @@ namespace GameOfLife.Tests
             game.Tick();
 
             VerifyPattern(game, pattern);
+        }
+
+        [Test]
+        public void Tick_GliderPattern_Moves()
+        {
+            var game = new Game(10, 10);
+
+            LoadPattern(game, Patterns.Spaceships.Glider);
+
+            game.Tick();
+            VerifyPattern(game, Patterns.Spaceships.GliderVerifyStep1);
+
+            game.Tick();
+            VerifyPattern(game, Patterns.Spaceships.GliderVerifyStep2);
         }
 
         private static void VerifyPattern(Game game, string pattern)

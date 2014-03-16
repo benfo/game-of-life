@@ -32,9 +32,21 @@
         public class Spaceships
         {
             public const string Glider =
-                ".*.\r\n" +
+                ".*\r\n" +
                 "..*\r\n" +
                 "***";
+
+            public const string GliderVerifyStep1 =
+                "...\r\n" +
+                "*.*\r\n" +
+                ".**\r\n" +
+                ".*.";
+
+            public const string GliderVerifyStep2 =
+                "...\r\n" +
+                "..*\r\n" +
+                "*.*\r\n" +
+                ".**";
         }
     }
 }
