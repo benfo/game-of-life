@@ -56,7 +56,7 @@ namespace GameOfLife.Tests
 
         private static void VerifyPattern(Game game, string pattern)
         {
-            var cellPatterns = new PatternParser().Parse(pattern);
+            var cellPatterns = new Life105PatternParser().Parse(pattern);
             foreach (var cellPattern in cellPatterns)
             {
                 Assert.That(game.Grid[cellPattern.Column, cellPattern.Row].State, Is.EqualTo(cellPattern.State));
@@ -65,7 +65,7 @@ namespace GameOfLife.Tests
 
         private static void LoadPattern(Game game, string pattern)
         {
-            var cellPatterns = new PatternParser().Parse(pattern);
+            var cellPatterns = new Life105PatternParser().Parse(pattern);
             foreach (var cellPattern in cellPatterns)
             {
                 game.Grid[cellPattern.Column, cellPattern.Row].State = cellPattern.State;

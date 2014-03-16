@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace GameOfLife
 {
-    public class PatternParser
+    public class Life105PatternParser : IPatternParser
     {
         public IEnumerable<CellPattern> Parse(string pattern)
         {
-            var rows = pattern.Split('|');
+            var rows = pattern.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
 
             for (var rowIndex = 0; rowIndex < rows.Length; rowIndex++)
             {
@@ -14,7 +15,7 @@ namespace GameOfLife
                 for (var colIndex = 0; colIndex < row.Length; colIndex++)
                 {
                     var patternCharacter = row[colIndex];
-                    var state = patternCharacter == 'a' ? CellState.Alive : CellState.Dead;
+                    var state = patternCharacter == '*' ? CellState.Alive : CellState.Dead;
 
                     yield return new CellPattern
                     {
