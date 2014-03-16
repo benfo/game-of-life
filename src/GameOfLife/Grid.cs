@@ -12,20 +12,27 @@ namespace GameOfLife
             Columns = columns;
             Rows = rows;
             _cells = new Cell[columns, rows];
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            for (var row = 0; row < Rows; row++)
+            {
+                for (var column = 0; column < Columns; column++)
+                {
+                    _cells[column, row] = new Cell { Column = column, Row = row, State = CellState.Dead };
+                }
+            }
         }
 
         public int Columns { get; private set; }
 
         public int Rows { get; private set; }
 
-        public void AddCell(Cell cell)
+        public Cell this[int column, int row]
         {
-            _cells[cell.Column, cell.Row] = cell;
-        }
-
-        public Cell GetCell(int column, int row)
-        {
-            return _cells[column, row];
+            get { return _cells[column, row]; }
         }
 
         public IEnumerator<Cell> GetEnumerator()
@@ -34,8 +41,7 @@ namespace GameOfLife
             {
                 for (var column = 0; column < Columns; column++)
                 {
-                    var cell = _cells[column, row];
-                    if (cell == null) continue;
+                    var cell = this[column, row];
                     yield return cell;
                 }
             }

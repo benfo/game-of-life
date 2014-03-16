@@ -33,7 +33,7 @@ namespace GameOfLife
         {
             if (OutOfBounds(column, row)) return null;
             
-            return _grid.GetCell(column, row);
+            return _grid[column, row];
         }
 
         private bool OutOfBounds(int column, int row)

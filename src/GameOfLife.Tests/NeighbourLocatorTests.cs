@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-using NUnit.Framework;
-using System;
+﻿using NUnit.Framework;
 using System.Linq;
 
 namespace GameOfLife.Tests
@@ -37,7 +35,10 @@ namespace GameOfLife.Tests
             var testCase = NeighbourTestCase.Create(_grid3X3, pattern);
 
             var locator = new NeighbourLocator(_grid3X3);
-            var neighbours = locator.Find(testCase.Cell).ToArray();
+            var neighbours = locator
+                .Find(testCase.Cell)
+                .Where(cell => cell.State == CellState.Alive)
+                .ToArray();
 
             Assert.That(neighbours.Length, Is.EqualTo(neighbourCount));
         }
@@ -53,50 +54,50 @@ namespace GameOfLife.Tests
         [TestCase(2, 2)]
         public void Find_CellWith1Neighbour_Returns1Neighbour(int col, int row)
         {
-            var cell = new Cell { Column = 1, Row = 1, State = CellState.Alive };
-            _grid3X3.AddCell(cell);
-
-            var ncell = new Cell { Column = col, Row = row, State = CellState.Alive };
-            _grid3X3.AddCell(ncell);
+            _grid3X3[1, 1].State = CellState.Alive;
+            _grid3X3[col, row].State = CellState.Alive;
 
             var locator = new NeighbourLocator(_grid3X3);
-            var neighbours = locator.Find(cell).ToArray();
+            var neighbours = locator
+                .Find(_grid3X3[1, 1])
+                .Where(cell => cell.State == CellState.Alive)
+                .ToArray();
 
             Assert.That(neighbours.Length, Is.EqualTo(1));
-            Assert.That(neighbours[0], Is.EqualTo(ncell));
+            Assert.That(neighbours[0], Is.EqualTo(_grid3X3[col, row]));
         }
 
         [Test]
         public void Find_CellWith2Neighbours_Returns2Neighbours()
         {
-            var cell = new Cell { Column = 1, Row = 1, State = CellState.Alive };
-            _grid3X3.AddCell(cell);
+            _grid3X3[1, 1].State = CellState.Alive;
 
-            var ncell1 = new Cell { Column = 0, Row = 0, State = CellState.Alive };
-            var ncell2 = new Cell { Column = 1, Row = 2, State = CellState.Alive };
-            _grid3X3.AddCell(ncell1);
-            _grid3X3.AddCell(ncell2);
+            _grid3X3[0, 0].State = CellState.Alive;
+            _grid3X3[1, 2].State = CellState.Alive;
 
             var locator = new NeighbourLocator(_grid3X3);
-            var neighbours = locator.Find(cell).ToArray();
+            var neighbours = locator
+                .Find(_grid3X3[1, 1])
+                .Where(cell => cell.State == CellState.Alive)
+                .ToArray();
 
             Assert.That(neighbours.Length, Is.EqualTo(2));
-            Assert.That(neighbours[0], Is.EqualTo(ncell1));
-            Assert.That(neighbours[1], Is.EqualTo(ncell2));
+            Assert.That(neighbours[0], Is.EqualTo(_grid3X3[0, 0]));
+            Assert.That(neighbours[1], Is.EqualTo(_grid3X3[1, 2]));
         }
 
         [Test]
         public void Find_CellWithNoNeighbours_ReturnsNoNeighbours()
         {
-            var cell = new Cell { Column = 1, Row = 1, State = CellState.Alive };
-            _grid3X3.AddCell(cell);
+            _grid3X3[1, 1].State = CellState.Alive;
 
             var locator = new NeighbourLocator(_grid3X3);
-            var neighbours = locator.Find(cell);
+            var neighbours = locator
+                .Find(_grid3X3[1, 1])
+                .Where(cell => cell.State == CellState.Alive)
+                .ToArray();
 
             Assert.That(neighbours.Count(), Is.EqualTo(0));
         }
-
-
     }
 }

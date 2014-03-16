@@ -29,16 +29,15 @@ namespace GameOfLife.Tests
                     if (string.IsNullOrWhiteSpace(cellPattern))
                         continue;
 
-                    var cell = new Cell { Column = colIndex, Row = rowIndex };
-                    grid.AddCell(cell);
+                    grid[colIndex, rowIndex].State = CellState.Alive;
                     switch (cellPattern)
                     {
                         case "c":
-                            neighbourTestCase.Cell = cell;
+                            neighbourTestCase.Cell = grid[colIndex, rowIndex];
                             break;
 
                         case "p":
-                            neighbourTestCase.NeighbouringCells.Add(cell);
+                            neighbourTestCase.NeighbouringCells.Add(grid[colIndex, rowIndex]);
                             break;
                     }
                 }

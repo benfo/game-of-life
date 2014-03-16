@@ -19,36 +19,16 @@ namespace GameOfLife.Tests
         }
 
         [Test]
-        [TestCase(2, 2)]
-        [TestCase(1, 2)]
-        [TestCase(2, 3)]
-        public void AddCell_GivenACellWithColumnAndRow_AddsCellIntoThatColumn(int column, int row)
+        [TestCase(5, 5)]
+        [TestCase(10, 5)]
+        [TestCase(5, 10)]
+        public void Constructor_GivenRowsAndColumn_GridIsInitializedWithDeadCells(int columns, int rows)
         {
-            var grid = new Grid(4, 4);
-            var cell = new Cell {Column = column, Row = row};
+            var grid = new Grid(columns, rows);
 
-            grid.AddCell(cell);
+            var count = grid.Count(cell => cell.State == CellState.Dead);
 
-            var addedCell = grid.GetCell(column, row);
-            Assert.That(addedCell.Column, Is.EqualTo(column));
-            Assert.That(addedCell.Row, Is.EqualTo(row));
-        }
-
-        [Test]
-        public void Enumerable_ValidCellsAreAdded_ReturnsAddedCells()
-        {
-            var grid = new Grid(4, 4);
-            var cell1 = new Cell { Column = 0, Row = 1 };
-            var cell2 = new Cell { Column = 2, Row = 1 };
-            var cell3 = new Cell { Column = 3, Row = 3 };
-            var cell4 = new Cell { Column = 2, Row = 3 };
-
-            grid.AddCell(cell1);
-            grid.AddCell(cell2);
-            grid.AddCell(cell3);
-            grid.AddCell(cell4);
-            
-            Assert.That(grid.ElementAt(0), Is.EqualTo(cell1));
+            Assert.That(count, Is.EqualTo(columns * rows));
         }
     }
 }
