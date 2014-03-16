@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GameOfLife.Core
+namespace GameOfLife.Core.Readers
 {
     public interface IPatternReader
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GameOfLife.Core
+namespace GameOfLife.Core.Readers
 {
     public class Life105PatternReader : IPatternReader
     {
