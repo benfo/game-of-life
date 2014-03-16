@@ -15,15 +15,28 @@ namespace GameOfLife
 
         public void Tick()
         {
-            Generation += 1;
+            CalculateLivingNeighbours();
 
+            EvolveCells();
+
+            Generation += 1;
+        }
+
+        private void EvolveCells()
+        {
+            foreach (var cell in _grid)
+            {
+                cell.Tick();
+            }
+        }
+
+        private void CalculateLivingNeighbours()
+        {
             foreach (var cell in _grid)
             {
                 cell.LivingNeighbourCount = _neighbourLocator
                     .Find(cell)
                     .Count(n => n.State == CellState.Alive);
-
-                cell.Tick();
             }
         }
 
