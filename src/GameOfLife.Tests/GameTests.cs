@@ -34,5 +34,55 @@ namespace GameOfLife.Tests
 
             Assert.That(game.Grid[5, 5].State, Is.EqualTo(CellState.Dead));
         }
+
+        [Test]
+        public void Tick_StillLifePattern_NothingIsBornOrDies()
+        {
+            //Using pattern: http://www.conwaylife.com/wiki/Barge
+
+            var game = new Game(6, 6);
+
+            LoadPattern(game, 1, 1, Patterns.StillLifes.Barge);
+
+            game.Tick();
+            game.Tick();
+
+            VerifyPattern(game, 1, 1, Patterns.StillLifes.Barge);
+        }
+
+        private static void VerifyPattern(Game game, int colOffset, int rowOffset, string pattern)
+        {
+            var rows = pattern.Split('|');
+
+            for (int rowIndex = 0; rowIndex < rows.Length; rowIndex++)
+            {
+                var row = rows[rowIndex];
+                for (int colIndex = 0; colIndex < row.Length; colIndex++)
+                {
+                    var statePattern = row[colIndex];
+                    var state = statePattern == 'a' ? CellState.Alive : CellState.Dead;
+
+                    Assert.That(game.Grid[colIndex + colOffset, rowIndex + rowOffset].State, Is.EqualTo(state));
+                }
+            }
+        }
+
+        private static string[] LoadPattern(Game game, int colOffset, int rowOffset, string pattern)
+        {
+            var rows = pattern.Split('|');
+
+            for (int rowIndex = 0; rowIndex < rows.Length; rowIndex++)
+            {
+                var row = rows[rowIndex];
+                for (int colIndex = 0; colIndex < row.Length; colIndex++)
+                {
+                    var statePattern = row[colIndex];
+                    var state = statePattern == 'a' ? CellState.Alive : CellState.Dead;
+
+                    game.Grid[colIndex + colOffset, rowIndex + rowOffset].State = state;
+                }
+            }
+            return rows;
+        }
     }
 }

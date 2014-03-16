@@ -49,6 +49,7 @@
     <Compile Include="GridTests.cs" />
     <Compile Include="NeighbourLocatorTests.cs" />
     <Compile Include="NeighbourTestCase.cs" />
+    <Compile Include="Patterns.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
