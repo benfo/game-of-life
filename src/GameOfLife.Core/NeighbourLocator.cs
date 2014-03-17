@@ -6,6 +6,7 @@ namespace GameOfLife.Core
     public class NeighbourLocator
     {
         private readonly Grid _grid;
+        private readonly IBoundaryStrategy _boundaryStrategy;
 
         private static readonly Offset[] NeighbourOffsets =
         {
@@ -14,9 +15,11 @@ namespace GameOfLife.Core
             new Offset( -1, 1 ), new Offset( 0, 1 ),new Offset( 1, 1 )
         };
 
+
         public NeighbourLocator(Grid grid)
         {
             _grid = grid;
+            _boundaryStrategy = new DefaultBoundaryStrategy(_grid.Columns, _grid.Rows);
         }
 
         public IEnumerable<Cell> Find(Cell cell)
@@ -31,14 +34,9 @@ namespace GameOfLife.Core
 
         private Cell NeighbourAt(int column, int row)
         {
-            if (OutOfBounds(column, row)) return null;
+            if (_boundaryStrategy.OutOfBounds(column, row)) return null;
 
-            return _grid[column, row];
-        }
-
-        private bool OutOfBounds(int column, int row)
-        {
-            return column < 0 || row < 0 || column >= _grid.Columns || row >= _grid.Rows;
+            return _grid[_boundaryStrategy.GetColumn(column), _boundaryStrategy.GetRow(row)];
         }
 
         private class Offset

@@ -5,17 +5,23 @@ namespace GameOfLife.Core
 {
     public class Game
     {
+        private readonly IAliveRule _aliveRule;
+        private readonly IDeadRule _deadRule;
         private readonly Grid _grid;
         private readonly NeighbourLocator _neighbourLocator;
-        private readonly IDeadRule _deadRule;
-        private readonly IAliveRule _aliveRule;
-
         public Game(int columns, int rows)
         {
             _grid = new Grid(columns, rows);
             _neighbourLocator = new NeighbourLocator(_grid);
             _deadRule = new DeadRule();
             _aliveRule = new AliveRule();
+        }
+
+        public int Generation { get; private set; }
+
+        public Grid Grid
+        {
+            get { return _grid; }
         }
 
         public void Tick()
@@ -25,6 +31,16 @@ namespace GameOfLife.Core
             EvolveCells();
 
             Generation += 1;
+        }
+
+        private void CalculateLivingNeighbours()
+        {
+            foreach (var cell in _grid)
+            {
+                cell.LivingNeighbourCount = _neighbourLocator
+                    .Find(cell)
+                    .Count(n => n.State == CellState.Alive);
+            }
         }
 
         private void EvolveCells()
@@ -40,23 +56,6 @@ namespace GameOfLife.Core
                     _deadRule.Apply(cell);
                 }
             }
-        }
-
-        private void CalculateLivingNeighbours()
-        {
-            foreach (var cell in _grid)
-            {
-                cell.LivingNeighbourCount = _neighbourLocator
-                    .Find(cell)
-                    .Count(n => n.State == CellState.Alive);
-            }
-        }
-
-        public int Generation { get; private set; }
-
-        public Grid Grid
-        {
-            get { return _grid; }
         }
     }
 }
