@@ -56,5 +56,18 @@
                 "..*.*\r\n" +
                 "...**";
         }
+
+        public class Oscillators
+        {
+            public const string Blinker =
+                "...\r\n" +
+                "***\r\n" +
+                "...";
+
+            public const string BlinkerVerifyStep1 =
+                ".*.\r\n" +
+                ".*.\r\n" +
+                ".*.";
+        }
     }
 }

@@ -83,6 +83,26 @@ namespace GameOfLife.Tests
             VerifyPattern(game, Patterns.Spaceships.GliderVerifyStep10);
         }
 
+        [Test]
+        public void Tick_BlinkerPattern_Moves()
+        {
+            var game = new Game(3, 3);
+
+            LoadPattern(game, Patterns.Oscillators.Blinker);
+
+            game.Tick();
+            VerifyPattern(game, Patterns.Oscillators.BlinkerVerifyStep1);
+
+            game.Tick();
+            VerifyPattern(game, Patterns.Oscillators.Blinker);
+
+            game.Tick();
+            VerifyPattern(game, Patterns.Oscillators.BlinkerVerifyStep1);
+
+            game.Tick();
+            VerifyPattern(game, Patterns.Oscillators.Blinker);
+        }
+
         private static void VerifyPattern(Game game, string pattern)
         {
             var cells = new Life105PatternReader().Read(pattern);
