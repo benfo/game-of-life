@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace GameOfLife.Core
@@ -8,11 +9,11 @@ namespace GameOfLife.Core
         private readonly Grid _grid;
         private readonly IBoundaryStrategy _boundaryStrategy;
 
-        private static readonly Offset[] NeighbourOffsets =
+        private static readonly Tuple<int,int>[] NeighbourOffsets =
         {
-            new Offset( -1, -1 ), new Offset( 0, -1 ), new Offset( 1, -1 ),
-            new Offset( -1, 0 ), new Offset( 1, 0 ),
-            new Offset( -1, 1 ), new Offset( 0, 1 ),new Offset( 1, 1 )
+            new Tuple<int, int>(-1, -1), new Tuple<int, int>(0, -1), new Tuple<int, int>(1, -1),
+            new Tuple<int, int>(-1, 0),  new Tuple<int, int>(1, 0),
+            new Tuple<int, int>(-1, 1),  new Tuple<int, int>(0, 1), new Tuple<int, int>(1, 1)
         };
 
 
@@ -26,7 +27,7 @@ namespace GameOfLife.Core
         {
             var neighbouringCells =
                 from offset in NeighbourOffsets
-                select NeighbourAt(cell.Column + offset.ColumnOffset, cell.Row + offset.RowOffset);
+                select NeighbourAt(cell.Column + offset.Item1, cell.Row + offset.Item2);
 
             return neighbouringCells
                 .Where(neighbour => neighbour != null);
@@ -37,19 +38,6 @@ namespace GameOfLife.Core
             if (_boundaryStrategy.OutOfBounds(column, row)) return null;
 
             return _grid[_boundaryStrategy.GetColumn(column), _boundaryStrategy.GetRow(row)];
-        }
-
-        private class Offset
-        {
-            public Offset(int columnOffset, int rowOffset)
-            {
-                RowOffset = rowOffset;
-                ColumnOffset = columnOffset;
-            }
-
-            public int ColumnOffset { get; private set; }
-
-            public int RowOffset { get; private set; }
         }
     }
 }
