@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameOfLife.Core.Boundary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,13 +10,12 @@ namespace GameOfLife.Core
         private readonly Grid _grid;
         private readonly IBoundaryStrategy _boundaryStrategy;
 
-        private static readonly Tuple<int,int>[] NeighbourOffsets =
+        private static readonly Tuple<int, int>[] NeighbourOffsets =
         {
             new Tuple<int, int>(-1, -1), new Tuple<int, int>(0, -1), new Tuple<int, int>(1, -1),
             new Tuple<int, int>(-1, 0),  new Tuple<int, int>(1, 0),
             new Tuple<int, int>(-1, 1),  new Tuple<int, int>(0, 1), new Tuple<int, int>(1, 1)
         };
-
 
         public NeighbourLocator(Grid grid)
         {

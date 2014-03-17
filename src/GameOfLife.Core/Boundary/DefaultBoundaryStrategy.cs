@@ -1,4 +1,4 @@
-﻿namespace GameOfLife.Core
+﻿namespace GameOfLife.Core.Boundary
 {
     public class DefaultBoundaryStrategy : IBoundaryStrategy
     {

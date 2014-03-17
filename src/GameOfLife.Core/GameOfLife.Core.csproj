@@ -39,8 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DefaultBoundaryStrategy.cs" />
-    <Compile Include="IBoundaryStrategy.cs" />
+    <Compile Include="Boundary\DefaultBoundaryStrategy.cs" />
+    <Compile Include="Boundary\IBoundaryStrategy.cs" />
     <Compile Include="Rules\DeadRule.cs" />
     <Compile Include="Rules\AliveRule.cs" />
     <Compile Include="Cell.cs" />
