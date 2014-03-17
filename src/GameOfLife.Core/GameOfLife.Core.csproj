@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Rules\DeadRule.cs" />
+    <Compile Include="Rules\AliveRule.cs" />
     <Compile Include="Cell.cs" />
     <Compile Include="CellPattern.cs" />
     <Compile Include="CellState.cs" />

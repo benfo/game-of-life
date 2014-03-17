@@ -44,7 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CellTests.cs" />
+    <Compile Include="AliveRuleTests.cs" />
+    <Compile Include="DeadRuleTests.cs" />
     <Compile Include="GameTests.cs" />
     <Compile Include="GridTests.cs" />
     <Compile Include="NeighbourLocatorTests.cs" />

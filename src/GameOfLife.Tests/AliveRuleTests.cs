@@ -1,10 +1,11 @@
 ﻿using GameOfLife.Core;
+using GameOfLife.Core.Rules;
 using NUnit.Framework;
 
 namespace GameOfLife.Tests
 {
     [TestFixture]
-    public class CellTests
+    public class AliveRuleTests
     {
         [Test]
         public void Tick_LivingCellWithFewerThenTwoLivingNeighbours_Dies()
@@ -15,7 +16,7 @@ namespace GameOfLife.Tests
                 LivingNeighbourCount = 1
             };
 
-            cell.Tick();
+            new AliveRule().Apply(cell);
 
             Assert.That(cell.State == CellState.Dead);
         }
@@ -29,7 +30,7 @@ namespace GameOfLife.Tests
                 LivingNeighbourCount = 4
             };
 
-            cell.Tick();
+            new AliveRule().Apply(cell);
 
             Assert.That(cell.State == CellState.Dead);
         }
@@ -45,40 +46,9 @@ namespace GameOfLife.Tests
                 LivingNeighbourCount = livingNeighbourCount
             };
 
-            cell.Tick();
+            new AliveRule().Apply(cell);
 
             Assert.That(cell.State == CellState.Alive);
-        }
-
-        [Test]
-        public void Tick_DeadCellWithThreeLiveNeighbours_ComesAlive()
-        {
-            var cell = new Cell
-            {
-                State = CellState.Dead,
-                LivingNeighbourCount = 3
-            };
-
-            cell.Tick();
-
-            Assert.That(cell.State == CellState.Alive);
-        }
-
-        [Test]
-        [TestCase(1)]
-        [TestCase(2)]
-        [TestCase(5)]
-        public void Tick_DeadCellWithAnythingElseThanThreeLivingCells_RemainsDead(int livingNeighbourCount)
-        {
-            var cell = new Cell
-            {
-                State = CellState.Dead,
-                LivingNeighbourCount = livingNeighbourCount
-            };
-
-            cell.Tick();
-
-            Assert.That(cell.State == CellState.Dead);
         }
     }
 }

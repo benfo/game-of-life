@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using GameOfLife.Core.Rules;
 
 namespace GameOfLife.Core
 {
@@ -6,11 +7,15 @@ namespace GameOfLife.Core
     {
         private readonly Grid _grid;
         private readonly NeighbourLocator _neighbourLocator;
+        private DeadRule _deadRule;
+        private AliveRule _aliveRule;
 
         public Game(int columns, int rows)
         {
             _grid = new Grid(columns, rows);
             _neighbourLocator = new NeighbourLocator(_grid);
+            _deadRule = new DeadRule();
+            _aliveRule = new AliveRule();
         }
 
         public void Tick()
@@ -26,7 +31,14 @@ namespace GameOfLife.Core
         {
             foreach (var cell in _grid)
             {
-                cell.Tick();
+                if (cell.State == CellState.Alive)
+                {
+                    _aliveRule.Apply(cell);
+                }
+                else
+                {
+                    _deadRule.Apply(cell);
+                }
             }
         }
 
