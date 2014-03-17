@@ -79,24 +79,25 @@ namespace GameOfLife.Tests
             game.Tick();
             game.Tick();
             game.Tick();
+
             VerifyPattern(game, Patterns.Spaceships.GliderVerifyStep10);
         }
 
         private static void VerifyPattern(Game game, string pattern)
         {
-            var cellPatterns = new Life105PatternReader().Read(pattern);
-            foreach (var cellPattern in cellPatterns)
+            var cells = new Life105PatternReader().Read(pattern);
+            foreach (var cell in cells)
             {
-                Assert.That(game.Grid[cellPattern.Column, cellPattern.Row].State, Is.EqualTo(cellPattern.State));
+                Assert.That(game.Grid[cell.Column, cell.Row].State, Is.EqualTo(cell.State));
             }
         }
 
         private static void LoadPattern(Game game, string pattern)
         {
-            var cellPatterns = new Life105PatternReader().Read(pattern);
-            foreach (var cellPattern in cellPatterns)
+            var cells = new Life105PatternReader().Read(pattern);
+            foreach (var cell in cells)
             {
-                game.Grid[cellPattern.Column, cellPattern.Row].State = cellPattern.State;
+                game.Grid[cell.Column, cell.Row].State = cell.State;
             }
         }
     }

@@ -5,7 +5,7 @@ namespace GameOfLife.Core.Readers
 {
     public class Life105PatternReader : IPatternReader
     {
-        public IEnumerable<CellPattern> Read(string pattern)
+        public IEnumerable<Cell> Read(string pattern)
         {
             var rows = pattern.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
 
@@ -17,7 +17,7 @@ namespace GameOfLife.Core.Readers
                     var patternCharacter = row[colIndex];
                     var state = patternCharacter == '*' ? CellState.Alive : CellState.Dead;
 
-                    yield return new CellPattern
+                    yield return new Cell
                     {
                         Column = colIndex,
                         Row = rowIndex,

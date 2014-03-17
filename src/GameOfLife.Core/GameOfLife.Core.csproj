@@ -42,7 +42,6 @@
     <Compile Include="Rules\DeadRule.cs" />
     <Compile Include="Rules\AliveRule.cs" />
     <Compile Include="Cell.cs" />
-    <Compile Include="CellPattern.cs" />
     <Compile Include="CellState.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Grid.cs" />

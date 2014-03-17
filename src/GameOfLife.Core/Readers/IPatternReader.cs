@@ -4,6 +4,6 @@ namespace GameOfLife.Core.Readers
 {
     public interface IPatternReader
     {
-        IEnumerable<CellPattern> Read(string pattern);
+        IEnumerable<Cell> Read(string pattern);
     }
 }
