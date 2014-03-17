@@ -7,8 +7,8 @@ namespace GameOfLife.Core
     {
         private readonly Grid _grid;
         private readonly NeighbourLocator _neighbourLocator;
-        private DeadRule _deadRule;
-        private AliveRule _aliveRule;
+        private readonly IDeadRule _deadRule;
+        private readonly IAliveRule _aliveRule;
 
         public Game(int columns, int rows)
         {

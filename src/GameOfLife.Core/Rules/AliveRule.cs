@@ -1,6 +1,6 @@
 ﻿namespace GameOfLife.Core.Rules
 {
-    public class AliveRule
+    public class AliveRule : IAliveRule
     {
         public void Apply(Cell cell)
         {

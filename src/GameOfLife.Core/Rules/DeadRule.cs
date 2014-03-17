@@ -1,6 +1,6 @@
 ﻿namespace GameOfLife.Core.Rules
 {
-    public class DeadRule
+    public class DeadRule : IDeadRule
     {
         public void Apply(Cell cell)
         {
